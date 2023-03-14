@@ -24,6 +24,17 @@ export const listLocations: IItem[] = [
   { id: base64(), name: 'Estação de trem', selected: false },
 ]
 
+export const listPeople: IItem[] = [
+  { id: base64(), name: 'Sargento', selected: false },
+  { id: base64(), name: 'Florista', selected: false },
+  { id: base64(), name: 'Chefe de cozinha', selected: false },
+  { id: base64(), name: 'Mordomo', selected: false },
+  { id: base64(), name: 'Médica', selected: false },
+  { id: base64(), name: 'Dançarina', selected: false },
+  { id: base64(), name: 'Coveira', selected: false },
+  { id: base64(), name: 'Advogado', selected: false },
+]
+
 interface IItem {
   id: string,
   name: string,
