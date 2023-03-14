@@ -21,6 +21,10 @@ export function Guns() {
     return weapons.filter(weapons => weapons.selected).length
   }
 
+  const checkSelected = (id: string) => {
+    return weapons.find(weapon => weapon.id === id && weapon.selected)?.selected || false
+  }
+
   return (
     <Flex flexDirection={'column'} gap={10}>
       <Flex>
@@ -33,7 +37,7 @@ export function Guns() {
             key={weapon.id}
             id={weapon.id}
             name={weapon.name}
-            selected={weapon.selected}
+            selected={checkSelected(weapon.id)}
             changeSelection={changeSelection}
           ></Card>
         ))}

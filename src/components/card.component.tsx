@@ -3,7 +3,7 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 
 export function Card(card: ICardProps) {
-  const [selected, setSelected] = useState<boolean>(false)
+  const [selected, setSelected] = useState<boolean>(card.selected)
 
   const changeSelection = () => {
     setSelected(!selected)
