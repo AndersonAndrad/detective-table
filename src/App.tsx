@@ -1,10 +1,11 @@
 import { Flex } from '@chakra-ui/react';
-import { Guns } from "./components/guns.component";
+import { Locations } from './components/locations.component';
 
 export function App() {
   return (
     <Flex flexDirection={'column'} padding={2}>
-      <Guns></Guns>
+      {/* <Guns></Guns> */}
+      <Locations />
     </Flex>
   )
 }
