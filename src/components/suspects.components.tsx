@@ -1,10 +1,12 @@
 import { Flex, Text } from '@chakra-ui/react';
+import { useEffect, useState } from "react";
 import { IItem, listSuspects } from "../data/items.data";
+import { addToLocalStorage, getToLocalStorage } from '../utils/localStorage.util';
 
-import { useState } from "react";
 import { Card } from './card.component';
 
 export function Suspects() {
+  const keyLocalStorage: string = 'suspects'
   const [suspects, setSuspect] = useState(listSuspects);
 
   const changeSelection = (data: Omit<IItem, 'name'>) => {
@@ -13,6 +15,9 @@ export function Suspects() {
 
       return suspect
     })
+
+    /* Save to localStorage to backup */
+    addToLocalStorage(keyLocalStorage, listSuspects)
 
     setSuspect(listSuspects)
   }
@@ -24,6 +29,17 @@ export function Suspects() {
   const checkSelected = (suspectId: string) => {
     return suspects.find(suspect => suspect.id === suspectId && suspect.selected)?.selected || false
   }
+
+  useEffect(() => {
+    const weapons = getToLocalStorage(keyLocalStorage);
+
+    if (weapons && weapons.length) {
+      setSuspect(weapons);
+      return
+    }
+
+    setSuspect(listSuspects)
+  }, [])
 
   return (
     <Flex flexDirection={'column'} gap={10}>
