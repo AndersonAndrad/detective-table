@@ -3,7 +3,7 @@ import { Button, Flex } from '@chakra-ui/react';
 import { useState } from 'react';
 import { Guns } from './components/guns.component';
 import { Locations } from './components/locations.component';
-import { People } from './components/people.components';
+import { Suspects } from './components/suspects.components';
 
 export function App() {
   const [tableToShow, setTableToShow] = useState<tableEnum>(tableEnum.PEOPLE)
@@ -18,7 +18,7 @@ export function App() {
         <Button onClick={() => { setTableToShow(tableEnum.LOCATIONS) }}>Locais</Button>
       </Flex>
 
-      {tableToShow === tableEnum.PEOPLE && <People />}
+      {tableToShow === tableEnum.PEOPLE && <Suspects />}
 
       {tableToShow === tableEnum.GUNS && <Guns />}
 

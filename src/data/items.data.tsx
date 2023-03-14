@@ -24,7 +24,7 @@ export const listLocations: IItem[] = [
   { id: base64(), name: 'Estação de trem', selected: false },
 ]
 
-export const listPeople: IItem[] = [
+export const listSuspects: IItem[] = [
   { id: base64(), name: 'Sargento', selected: false },
   { id: base64(), name: 'Florista', selected: false },
   { id: base64(), name: 'Chefe de cozinha', selected: false },
