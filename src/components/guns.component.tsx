@@ -1,20 +1,25 @@
 import { Flex, Text } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 import { IItem, listWeapons } from '../data/items.data'
+import { addToLocalStorage, getToLocalStorage } from '../utils/localStorage.util'
 
-import { useState } from 'react'
 import { Card } from './card.component'
 
 export function Guns() {
+  const keyLocalStorage: string = 'weapons'
   const [weapons, setWeapons] = useState(listWeapons)
 
   const changeSelection = (data: Omit<IItem, 'name'>) => {
-    const listWeapon = weapons.map(weapon => {
+    const listWeapons = weapons.map(weapon => {
       if (weapon.id === data.id) weapon.selected = data.selected;
 
       return weapon
     })
 
-    setWeapons(listWeapon)
+    /* Save to localStorage to backup */
+    addToLocalStorage(keyLocalStorage, listWeapons)
+
+    setWeapons(listWeapons)
   }
 
   const countSelected = () => {
@@ -24,6 +29,18 @@ export function Guns() {
   const checkSelected = (id: string) => {
     return weapons.find(weapon => weapon.id === id && weapon.selected)?.selected || false
   }
+
+  useEffect(() => {
+    const weapons = getToLocalStorage(keyLocalStorage);
+
+    if (weapons && weapons.length) {
+      setWeapons(weapons);
+      return
+    }
+
+    setWeapons(listWeapons)
+
+  }, [])
 
   return (
     <Flex flexDirection={'column'} gap={10}>
